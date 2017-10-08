@@ -40,7 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    private void moveCameraToKml(KmlLayer kmlLayer) {
+    private void moveCameraToKml(KmlLayer kmlLayer, GoogleMap mMap) {
         //Retrieve the first container in the KML layer
         KmlContainer container = kmlLayer.getContainers().iterator().next();
         //Retrieve a nested container within the first container
@@ -57,11 +57,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
+        
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
 
-        mapFragment.getMapAsync(this).moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
     }
 
     /**
@@ -125,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             kmlLayer = new KmlLayer(mMap, R.raw.utfsm, getApplicationContext());
             kmlLayer.addLayerToMap();
-            moveCameraToKml(kmlLayer);
+            moveCameraToKml(kmlLayer,mMap);
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
