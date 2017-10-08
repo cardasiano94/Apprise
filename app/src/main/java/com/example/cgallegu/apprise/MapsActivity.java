@@ -1,6 +1,7 @@
 package com.example.cgallegu.apprise;
 
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -23,7 +24,9 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    private static final int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 1;
 
     private GoogleMap mMap;
 
@@ -54,7 +57,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
-        getMapAsync(this).moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+
+        mapFragment.getMapAsync(this).moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
     }
 
     /**
@@ -68,12 +75,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        if( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        if (ContextCompat.checkSelfPermission(MapsActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(MapsActivity.this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_COARSE_LOCATION);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+
+        /*if( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
 
             ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
                     LocationService.MY_PERMISSION_ACCESS_COURSE_LOCATION );
-        }
+        }*/
+
         googleMap.setMyLocationEnabled(true);
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
