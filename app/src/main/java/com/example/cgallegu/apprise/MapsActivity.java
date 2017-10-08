@@ -11,7 +11,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.data.kml.KmlLayer;
-
+import com.google.maps.android.data.kml.KmlContainer;
+import com.google.maps.android.data.kml.KmlPlacemark;
+import com.google.maps.android.data.kml.KmlPolygon;
+import com.google.android.gms.maps.model.LatLngBounds;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
@@ -30,6 +33,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    private void moveCameraToKml(KmlLayer kmlLayer) {
+        //Retrieve the first container in the KML layer
+        KmlContainer container = kmlLayer.getContainers().iterator().next();
+        //Retrieve a nested container within the first container
+        container = container.getContainers().iterator().next();
+        //Retrieve the first placemark in the nested container
+        KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+        //Retrieve a polygon object in a placemark
+        KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
+        //Create LatLngBounds of the outer coordinates of the polygon
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (LatLng latLng : polygon.getOuterBoundaryCoordinates()) {
+            builder.include(latLng);
+        }
+
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
+    }
 
     /**
      * Manipulates the map once available.
@@ -44,15 +66,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        /* Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
 
         KmlLayer kmlLayer = null;
         try {
             kmlLayer = new KmlLayer(mMap, R.raw.utfsm, getApplicationContext());
             kmlLayer.addLayerToMap();
+            moveCameraToKml(kmlLayer);
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
