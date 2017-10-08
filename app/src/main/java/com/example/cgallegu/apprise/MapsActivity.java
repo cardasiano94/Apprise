@@ -57,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
-        
+
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
 
