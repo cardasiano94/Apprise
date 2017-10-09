@@ -25,7 +25,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnP {
     private static final int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 1;
 
     private GoogleMap mMap;
@@ -132,4 +132,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
+
+
 }
