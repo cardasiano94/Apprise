@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/mainLayout"
-        android:layout_width="386dp"
-        android:layout_height="512dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"></LinearLayout>
