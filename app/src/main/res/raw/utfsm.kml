@@ -2,6 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
 	<name>utfsm</name>
+	<description>utfsm</description>
 	<Style id="transRedPoly">
           <LineStyle>
             <width>1.5</width>
@@ -13,9 +14,10 @@
     <Folder>
           <name>nameee</name>
           <visibility>1</visibility>
-          <description>aaaaaaaa</description>
+          <description>folder</description>
 	<Placemark>
 		<name>UTFSM</name>
+		<description>Universidad</description>
 		<visibility>1</visibility>
 		<styleUrl>#transRedPoly</styleUrl>
 		<Polygon>

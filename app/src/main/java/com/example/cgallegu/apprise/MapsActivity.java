@@ -19,7 +19,8 @@ import com.google.maps.android.data.kml.KmlPlacemark;
 import com.google.maps.android.data.kml.KmlPolygon;
 import com.google.android.gms.maps.model.LatLngBounds;
 import android.support.v4.app.ActivityCompat;
-
+import com.google.maps.android.data.Feature;
+import android.widget.Toast;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
@@ -125,6 +126,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             kmlLayer = new KmlLayer(mMap, R.raw.utfsm, getApplicationContext());
             kmlLayer.addLayerToMap();
             moveCameraToKml(kmlLayer,mMap);
+            kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                @Override
+                public void onFeatureClick(Feature feature) {
+                    Toast.makeText(MapsActivity.this,
+                            "Feature clicked: " + feature.getProperty("description"),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
