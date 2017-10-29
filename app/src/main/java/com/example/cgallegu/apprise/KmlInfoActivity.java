@@ -13,10 +13,6 @@ public class KmlInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kml_info);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MapFragment.EXTRA_MESSAGE);
-
-        // Capture the layout's TextView and set the string as its text
-        TextView textView = (TextView) findViewById(R.id.textView2);
-        textView.setText(message);
+        setTitle(intent.getStringExtra(MapFragment.EXTRA_MESSAGE));
     }
 }
