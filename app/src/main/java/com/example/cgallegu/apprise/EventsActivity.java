@@ -120,7 +120,7 @@ public class EventsActivity extends AppCompatActivity
 
     ///funcion updatea kmls en data/data/com.example.cgallegu.apprise/files/ExtractLoc
     public void updateKmls() {
-        String serverFilePath = "https://drive.google.com/uc?export=download&id=0B2mbV4LAZpcLZ2t6bGlwalNWU3M";
+        String serverFilePath = "http://labcomp.cl/~oduarte/kmls.zip";
         //String serverFilePath = "https://drive.google.com/uc?export=download&id=0B2mbV4LAZpcLbHdTWmwtWXlHenc";
 
         String path = FileUtils.getDataDir(context).getAbsolutePath();
@@ -184,7 +184,7 @@ public class EventsActivity extends AppCompatActivity
         for (int i = 0; i < files.length; i++)
         {
             Log.e("Files", "FileName:" + files[i].getName());
-            ///files[i].getName() para poner en listActivity
+            //files[i].getName() para poner en listActivity
         }
         ////////////////////
 
