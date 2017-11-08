@@ -29,8 +29,8 @@ import com.google.maps.android.data.kml.KmlPolygon;
 
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +39,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mMap;
     public static final String EXTRA_MESSAGE = "com.example.cgallegu.apprise.MESSAGE";
     public static final String EXTRA_DESCRIPTION = "com.example.cgallegu.apprise.MESSAGE";
+    private String kmlname;
     public MapFragment() {
         // Required empty public constructor
     }
@@ -48,7 +49,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_maps, container, false);
+        kmlname = getArguments().getString("NAME");
         return v;
+
     }
 
     @Override
@@ -135,7 +138,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         KmlLayer kmlLayer = null;
         try {
-            kmlLayer = new KmlLayer(mMap, R.raw.campus, getActivity().getApplicationContext());
+
+            //kmlLayer = new KmlLayer(mMap, R.raw.campus, getActivity().getApplicationContext());
+            String path2 = "data/data/com.example.cgallegu.apprise/files/ExtractLoc";
+            String kml_route = path2 + "/" + kmlname;
+            FileInputStream stream = new FileInputStream(kml_route);
+            kmlLayer = new KmlLayer(mMap, stream, getActivity().getApplicationContext());
+
             kmlLayer.addLayerToMap();
             //kmlLayer.getContainerFeature("document").getProperty("name");
             moveCameraToKml(kmlLayer,mMap);

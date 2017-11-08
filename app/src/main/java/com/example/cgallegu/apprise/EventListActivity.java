@@ -1,5 +1,6 @@
 package com.example.cgallegu.apprise;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.io.File;
@@ -18,24 +19,25 @@ import android.content.Context;
 
 public class EventListActivity extends ListActivity {
 
-    private TextView text;
-    private List<String> listValues;
-    private static Context context;
+    public static final String NAME = "com.example.cgallegu.apprise.MESSAGE";
 
+    private TextView text;
+    private List<String> listValues = new ArrayList<String>();
+    private static Context context;
+    private ArrayAdapter<String> myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
         context = getApplicationContext();
-        listValues = new ArrayList<String>();
         updateKmls();
 
         text = (TextView) findViewById(R.id.mainText);
 
         // initiate the listadapter
-        ArrayAdapter<String> myAdapter = new ArrayAdapter <String>(this,
-                R.layout.event_layout, R.id.listText, listValues);
+        myAdapter = new ArrayAdapter<String>(this,
+                R.layout.activity_event_list, R.id.mainText, listValues);
 
         // assign the list adapter
         setListAdapter(myAdapter);
@@ -50,7 +52,12 @@ public class EventListActivity extends ListActivity {
         String selectedItem = (String) getListView().getItemAtPosition(position);
         //String selectedItem = (String) getListAdapter().getItem(position);
 
-        text.setText("You clicked " + selectedItem + " at position " + position);
+        Intent intent = new Intent(context, EventsActivity.class);
+        String message = listValues.get(position);
+        intent.putExtra(NAME, message);
+        startActivity(intent);
+
+        //text.setText("You clicked " + selectedItem + " at position " + position);
     }
 
     ///funcion updatea kmls en data/data/com.example.cgallegu.apprise/files/ExtractLoc
@@ -90,6 +97,12 @@ public class EventListActivity extends ListActivity {
                 Toast.makeText(EventListActivity.this,
                         "complete",
                         Toast.LENGTH_SHORT).show();
+                /*try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+
                 String path2 = "data/data/com.example.cgallegu.apprise/files/ExtractLoc";
                 Log.e("Files", "Path: " + path2);
                 File directory = new File(path2);
@@ -98,11 +111,12 @@ public class EventListActivity extends ListActivity {
 
                 for (int i = 0; i < files.length; i++)
                 {
-
                     listValues.add(files[i].getName());
                     Log.e("Files", "FileName:" + files[i].getName());
                     // files[i].getName() para poner en listActivity
                 }
+
+                myAdapter.notifyDataSetChanged();
             }
 
             @Override

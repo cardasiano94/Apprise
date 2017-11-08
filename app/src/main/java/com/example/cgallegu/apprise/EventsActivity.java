@@ -2,6 +2,7 @@ package com.example.cgallegu.apprise;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -63,9 +64,6 @@ public class EventsActivity extends AppCompatActivity
         StrictMode.setThreadPolicy(policy);
 
 
-
-
-
     }
 
     @Override
@@ -106,8 +104,13 @@ public class EventsActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Intent intent = getIntent();
+        Bundle info = new Bundle();
+        info.putString("NAME", intent.getStringExtra(EventListActivity.NAME));
+
         if (id == R.id.nav_map) {
             MapFragment mapFragment = new MapFragment();
+            mapFragment.setArguments(info);
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
         }
@@ -117,6 +120,4 @@ public class EventsActivity extends AppCompatActivity
         return true;
     }
 
-
 }
-

@@ -26,7 +26,6 @@ tools:context="com.example.cgallegu.apprise.EventListActivity">
     android:layout_height="wrap_content"
     android:layout_below="@+id/mainText"
     android:id="@android:id/empty"
-    android:text="There is no data"
     android:textStyle="bold" />
-
+    <!--android:text="There is no data" -->
 </RelativeLayout>
