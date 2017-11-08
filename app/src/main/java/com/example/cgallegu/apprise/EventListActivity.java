@@ -28,16 +28,10 @@ public class EventListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
         context = getApplicationContext();
+        listValues = new ArrayList<String>();
         updateKmls();
 
         text = (TextView) findViewById(R.id.mainText);
-
-        listValues = new ArrayList<String>();
-        listValues.add("Android");
-        listValues.add("iOS");
-        listValues.add("Symbian");
-        listValues.add("Blackberry");
-        listValues.add("Windows Phone");
 
         // initiate the listadapter
         ArrayAdapter<String> myAdapter = new ArrayAdapter <String>(this,
@@ -96,6 +90,19 @@ public class EventListActivity extends ListActivity {
                 Toast.makeText(EventListActivity.this,
                         "complete",
                         Toast.LENGTH_SHORT).show();
+                String path2 = "data/data/com.example.cgallegu.apprise/files/ExtractLoc";
+                Log.e("Files", "Path: " + path2);
+                File directory = new File(path2);
+                File[] files = directory.listFiles();
+                Log.e("Files", "Size: "+ files.length);
+
+                for (int i = 0; i < files.length; i++)
+                {
+
+                    listValues.add(files[i].getName());
+                    Log.e("Files", "FileName:" + files[i].getName());
+                    // files[i].getName() para poner en listActivity
+                }
             }
 
             @Override
@@ -117,19 +124,7 @@ public class EventListActivity extends ListActivity {
         downloader.download(context);
 
         //logcat para ver q archivos estaban en el zip
-        String path2 = "data/data/com.example.cgallegu.apprise/files/ExtractLoc";
-        Log.e("Files", "Path: " + path2);
-        File directory = new File(path2);
-        File[] files = directory.listFiles();
-        Log.e("Files", "Size: "+ files.length);
-        listValues = new ArrayList<String>();
-        for (int i = 0; i < files.length; i++)
-        {
 
-            listValues.add(files[i].getName());
-            Log.e("Files", "FileName:" + files[i].getName());
-            // files[i].getName() para poner en listActivity
-        }
         ////////////////////
 
 
