@@ -2,6 +2,8 @@ package com.example.cgallegu.apprise;
 
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -35,7 +37,8 @@ import java.io.IOException;
  */
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mMap;
-
+    public static final String EXTRA_MESSAGE = "com.example.cgallegu.apprise.MESSAGE";
+    public static final String EXTRA_DESCRIPTION = "com.example.cgallegu.apprise.MESSAGE";
     public MapFragment() {
         // Required empty public constructor
     }
@@ -132,15 +135,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         KmlLayer kmlLayer = null;
         try {
-            kmlLayer = new KmlLayer(mMap, R.raw.utfsm, getActivity().getApplicationContext());
+            kmlLayer = new KmlLayer(mMap, R.raw.campus, getActivity().getApplicationContext());
             kmlLayer.addLayerToMap();
+            //kmlLayer.getContainerFeature("document").getProperty("name");
             moveCameraToKml(kmlLayer,mMap);
+
             kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                 @Override
                 public void onFeatureClick(Feature feature) {
-                    Toast.makeText(getActivity(),
-                            "Feature clicked: " + feature.getProperty("description"),
-                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), KmlInfoActivity.class);
+                    String message = feature.getProperty("description");
+                    intent.putExtra(EXTRA_MESSAGE, message);
+                    //intent.putExtra(EXTRA_DESCRIPTION, kmlLayer.getContainerFeature("document").getProperty("name"));
+                    startActivity(intent);
                 }
             });
         } catch (XmlPullParserException e) {

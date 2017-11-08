@@ -23,6 +23,7 @@ import com.google.maps.android.data.Feature;
 import android.widget.Toast;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -142,7 +143,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
-
 
 
 }
