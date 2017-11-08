@@ -143,9 +143,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                 @Override
                 public void onFeatureClick(Feature feature) {
-                    Toast.makeText(getActivity(),
-                            "Feature clicked: " + feature.getProperty("description"),
-                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), KmlInfoActivity.class);
                     String message = feature.getProperty("description");
                     intent.putExtra(EXTRA_MESSAGE, message);
