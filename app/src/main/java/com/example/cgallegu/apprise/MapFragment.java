@@ -31,6 +31,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,9 +71,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         //Retrieve a nested container within the first container
         container = container.getContainers().iterator().next();
         //Retrieve the first placemark in the nested container
-        KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+        KmlPlacemark placemark;
+        KmlPolygon polygon;
+        int cont = 1;
+        Iterator itr = container.getPlacemarks().iterator();
+        while(true){
+            placemark = (KmlPlacemark) itr.next();
+            try {
+                polygon = (KmlPolygon) placemark.getGeometry();
+                break;
+            }
+            catch (Exception e){
+
+            }
+
+        }
         //Retrieve a polygon object in a placemark
-        KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
         //Create LatLngBounds of the outer coordinates of the polygon
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (LatLng latLng : polygon.getOuterBoundaryCoordinates()) {

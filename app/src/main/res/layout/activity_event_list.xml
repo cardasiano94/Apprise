@@ -18,6 +18,8 @@ tools:context="com.example.cgallegu.apprise.EventListActivity">
         android:id="@android:id/list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mainText"/>
+        android:layout_below="@+id/mainText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
