@@ -63,6 +63,16 @@ public class EventsActivity extends AppCompatActivity
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        //Codigo para cargar el mapa con kml al iniciar el fragment
+        Intent intent = getIntent();
+        Bundle info = new Bundle();
+        info.putString("NAME", intent.getStringExtra(EventListActivity.NAME));
+
+        MapFragment mapFragment = new MapFragment();
+        mapFragment.setArguments(info);
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
+        //
 
     }
 

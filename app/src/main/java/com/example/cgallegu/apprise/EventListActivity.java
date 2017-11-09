@@ -33,7 +33,6 @@ public class EventListActivity extends ListActivity {
         context = getApplicationContext();
         updateKmls();
 
-        text = (TextView) findViewById(R.id.mainText);
 
         // initiate the listadapter
         myAdapter = new ArrayAdapter<String>(this,

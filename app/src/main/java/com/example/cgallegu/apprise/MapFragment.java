@@ -153,7 +153,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 @Override
                 public void onFeatureClick(Feature feature) {
                     Intent intent = new Intent(getActivity(), KmlInfoActivity.class);
-                    String message = feature.getProperty("description");
+                    String message = feature.getProperty("name");
                     intent.putExtra(EXTRA_MESSAGE, message);
                     //intent.putExtra(EXTRA_DESCRIPTION, kmlLayer.getContainerFeature("document").getProperty("name"));
                     startActivity(intent);
