@@ -29,7 +29,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.jar.Attributes;
 
 public class EventsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -118,7 +117,6 @@ public class EventsActivity extends AppCompatActivity
         Intent intent = getIntent();
         Bundle info = new Bundle();
         info.putString("NAME", intent.getStringExtra(EventListActivity.NAME));
-        Log.e("asd", info.get("NAME").toString());
 
         if (id == R.id.nav_map) {
             MapFragment mapFragment = new MapFragment();

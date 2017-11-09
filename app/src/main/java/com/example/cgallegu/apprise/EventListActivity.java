@@ -18,6 +18,7 @@ public class EventListActivity extends ListActivity {
 
     public static final String NAME = "com.example.cgallegu.apprise.MESSAGE";
 
+
     private List<String> listValues = new ArrayList<String>();
     private static Context context;
     private ArrayAdapter<String> myAdapter;
@@ -32,7 +33,7 @@ public class EventListActivity extends ListActivity {
 
         // initiate the listadapter
         myAdapter = new ArrayAdapter<String>(this,
-                R.layout.list_setting, R.id.itemSetting, listValues);
+                R.layout.activity_event_list, R.id.mainText, listValues);
 
         // assign the list adapter
         setListAdapter(myAdapter);
@@ -49,7 +50,6 @@ public class EventListActivity extends ListActivity {
 
         Intent intent = new Intent(context, EventsActivity.class);
         String message = listValues.get(position);
-        message = message.substring(0,1).toLowerCase() + message.substring(1) + ".kml";
         intent.putExtra(NAME, message);
         startActivity(intent);
 
@@ -107,10 +107,8 @@ public class EventListActivity extends ListActivity {
 
                 for (int i = 0; i < files.length; i++)
                 {
-                    String name = files[i].getName();
-                    name = name.substring(0,1).toUpperCase() + name.substring(1);
-                    listValues.add(name.substring(0, name.length()-4));
-                    Log.e("Files", "FileName:" + name);
+                    listValues.add(files[i].getName());
+                    Log.e("Files", "FileName:" + files[i].getName());
                     // files[i].getName() para poner en listActivity
                 }
 
