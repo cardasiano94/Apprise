@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.app.ListActivity;
 import android.content.Context;
-import android.widget.Toast;
 
 
 public class EventListActivity extends ListActivity {
@@ -105,7 +104,7 @@ public class EventListActivity extends ListActivity {
                 File directory = new File(path2);
                 File[] files = directory.listFiles();
                 Log.e("Files", "Size: "+ files.length);
-                listValues.clear();
+
                 for (int i = 0; i < files.length; i++)
                 {
                     String name = files[i].getName();
@@ -135,13 +134,12 @@ public class EventListActivity extends ListActivity {
 
         FileDownloadService.FileDownloader downloader = FileDownloadService.FileDownloader.getInstance(downloadRequest, listener);
         downloader.download(context);
-        
-    }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        updateKmls();
+        //logcat para ver q archivos estaban en el zip
+
+        ////////////////////
+
+
     }
 
 }
