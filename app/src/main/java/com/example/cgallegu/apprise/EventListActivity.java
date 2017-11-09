@@ -84,17 +84,17 @@ public class EventListActivity extends ListActivity {
             @Override
             public void onDownloadStarted() {
                 //subscriber.onNext(String.valueOf(0));
-                Toast.makeText(EventListActivity.this,
+                /*Toast.makeText(EventListActivity.this,
                         "started",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
 
             @Override
             public void onDownloadCompleted() {
                 //subscriber.onNext(String.valueOf(100));
-                Toast.makeText(EventListActivity.this,
+                /*Toast.makeText(EventListActivity.this,
                         "complete",
-                        Toast.LENGTH_SHORT).show();
+                       Toast.LENGTH_SHORT).show();*/
                 /*try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
@@ -119,16 +119,16 @@ public class EventListActivity extends ListActivity {
 
             @Override
             public void onDownloadFailed() {
-                Toast.makeText(EventListActivity.this,
+                /*Toast.makeText(EventListActivity.this,
                         "failed",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
 
             @Override
             public void onDownloadProgress(int progress) {
-                Toast.makeText(EventListActivity.this,
+                /*Toast.makeText(EventListActivity.this,
                         "progress="+String.valueOf(progress),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
         };
 

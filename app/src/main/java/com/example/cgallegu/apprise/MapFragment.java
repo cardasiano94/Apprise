@@ -160,8 +160,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     characteristics.putString("DESCRIPTION", message2);
                     intent.putExtras(characteristics);
 
+                    if(message2 != null){
+                        startActivity(intent);
+                    }
                     //intent.putExtra(EXTRA_DESCRIPTION, kmlLayer.getContainerFeature("document").getProperty("name"));
-                    startActivity(intent);
+
                 }
             });
         } catch (XmlPullParserException e) {
