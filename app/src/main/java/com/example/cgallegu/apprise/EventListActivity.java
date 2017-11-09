@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.app.ListActivity;
 import android.widget.Toast;
 import android.content.Context;
@@ -21,7 +20,7 @@ public class EventListActivity extends ListActivity {
 
     public static final String NAME = "com.example.cgallegu.apprise.MESSAGE";
 
-    private TextView text;
+
     private List<String> listValues = new ArrayList<String>();
     private static Context context;
     private ArrayAdapter<String> myAdapter;

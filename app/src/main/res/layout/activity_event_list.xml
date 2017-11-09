@@ -12,19 +12,12 @@ tools:context="com.example.cgallegu.apprise.EventListActivity">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/mainText"
-    android:text="My list" />
+    android:text="Eventos"/>
 
-<ListView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@android:id/list"
-    android:background="#aaaaaa" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainText"/>
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/mainText"
-    android:id="@android:id/empty"
-    android:textStyle="bold" />
-    <!--android:text="There is no data" -->
 </RelativeLayout>
