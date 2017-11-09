@@ -50,6 +50,7 @@ public class EventListActivity extends ListActivity {
 
         Intent intent = new Intent(context, EventsActivity.class);
         String message = listValues.get(position);
+        message = message.substring(0,1).toLowerCase() + message.substring(1) + ".kml";
         intent.putExtra(NAME, message);
         startActivity(intent);
 
@@ -107,8 +108,10 @@ public class EventListActivity extends ListActivity {
 
                 for (int i = 0; i < files.length; i++)
                 {
-                    listValues.add(files[i].getName());
-                    Log.e("Files", "FileName:" + files[i].getName());
+                    String name = files[i].getName();
+                    name = name.substring(0,1).toUpperCase() + name.substring(1);
+                    listValues.add(name.substring(0, name.length()-4));
+                    Log.e("Files", "FileName:" + name);
                     // files[i].getName() para poner en listActivity
                 }
 
