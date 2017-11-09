@@ -38,7 +38,7 @@ import java.io.IOException;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mMap;
     public static final String EXTRA_MESSAGE = "com.example.cgallegu.apprise.MESSAGE";
-    public static final String EXTRA_DESCRIPTION = "com.example.cgallegu.apprise.MESSAGE";
+    public static final String DESCRIPTION = "com.example.cgallegu.apprise.MESSAGE";
     private String kmlname;
     public MapFragment() {
         // Required empty public constructor
@@ -153,8 +153,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 @Override
                 public void onFeatureClick(Feature feature) {
                     Intent intent = new Intent(getActivity(), KmlInfoActivity.class);
+                    Bundle characteristics = new Bundle();
                     String message = feature.getProperty("name");
-                    intent.putExtra(EXTRA_MESSAGE, message);
+                    String message2 = feature.getProperty("description");
+                    characteristics.putString("EXTRA_MESSAGE", message);
+                    characteristics.putString("DESCRIPTION", message2);
+                    intent.putExtras(characteristics);
+
                     //intent.putExtra(EXTRA_DESCRIPTION, kmlLayer.getContainerFeature("document").getProperty("name"));
                     startActivity(intent);
                 }
