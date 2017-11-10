@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="@dimen/layout_margin"
     tools:context="com.example.cgallegu.apprise.KmlInfoActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/info"/>
+        android:elevation="@dimen/cardview_default_elevation"
+        android:padding="@dimen/padding_card_view"
+        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        card_view:cardUseCompatPadding="true">
 
-</android.support.constraint.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/kml_info_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/padding_title"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/kml_info_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/kml_info_name"
+                android:padding="@dimen/padding_description"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
