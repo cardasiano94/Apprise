@@ -1,7 +1,17 @@
-<TextView android:id="@+id/event_list_item_main_text"
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_title"
-    android:text="fjadkslfkls"
-    android:textAlignment="center"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:elevation="@dimen/cardview_default_elevation"
+    card_view:cardCornerRadius="@dimen/cardview_default_radius"
+    card_view:cardUseCompatPadding="true"
+    android:layout_marginRight="@dimen/layout_margin"
+    android:layout_marginLeft="@dimen/layout_margin">
+    <TextView android:id="@+id/event_list_item_main_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_title"
+        android:textAlignment="center"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
+</android.support.v7.widget.CardView>
