@@ -19,7 +19,7 @@ public class KmlInfoActivity extends AppCompatActivity {
 
         String nameText = characteristics.getString("EXTRA_MESSAGE");
         String descriptionText = characteristics.getString("DESCRIPTION");
-        //setTitle(name);
+
         TextView name = (TextView)findViewById(R.id.kml_info_name);
         TextView description = (TextView)findViewById(R.id.kml_info_description);
 

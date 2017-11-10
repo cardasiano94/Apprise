@@ -22,6 +22,7 @@ public class EventListActivity extends ListActivity {
     private List<String> listValues = new ArrayList<String>();
     private static Context context;
     private ArrayAdapter<String> myAdapter;
+    private ListView eventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,13 @@ public class EventListActivity extends ListActivity {
         context = getApplicationContext();
         updateKmls();
 
+        // TODO borrar
+        for (int i = 0; i < 20; i++) listValues.add("hola" + i);
+        Log.e("Hola: ", listValues.toString());
 
-        // initiate the listadapter
+        // Initiate the listadapter
         myAdapter = new ArrayAdapter<String>(this,
-                R.layout.activity_event_list, R.id.mainText, listValues);
+                R.layout.event_list_item, R.id.event_list_item_main_text, listValues);
 
         // assign the list adapter
         setListAdapter(myAdapter);
@@ -137,6 +141,8 @@ public class EventListActivity extends ListActivity {
         downloader.download(context);
 
         //logcat para ver q archivos estaban en el zip
+        // TODO borrar
+        Log.e("Zip Duarte ", "" + listValues.isEmpty());
 
         ////////////////////
 
